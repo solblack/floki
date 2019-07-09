@@ -1,0 +1,30 @@
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+
+/* CHECKOUT */
+
+.btn-delete {
+    border: none;
+    color: #0d4659;
+    outline: none;
+}
+.btn-delete:hover {
+    background-color: #0d4659;
+    color: #fff;
+}
+.btn-delete:active {
+    background-color: #0d4659;
+    color: #fff;
+    outline: none;
+}
+
+.btn-delete-out{
+background-color: rgba(255, 0, 0, 0);
+border: none;
+outline: none;
+color: #0d4659;
+font-size: 16px;
+font-family: "Work Sans", sans-serif;
+/* padding: 8px 8px 0; */
+}

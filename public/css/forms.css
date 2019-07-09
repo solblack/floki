@@ -1,0 +1,361 @@
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+
+/* LOGIN */
+.section-login {
+    overflow: hidden;
+    height: 90vh;
+    width: 100vw;
+}
+
+/*Imagen*/
+.section-login .art1 {
+    width: 50vw;
+    height: 80vh;
+    float: left;
+    display: inline-block;
+}
+.section-login .art1 img {
+    object-fit: cover;
+}
+
+/*Formulario*/
+.section-login .art2 {
+    float: left;
+    height: 80vh;
+}
+.section-login .ingresarcon {
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 5vh;
+    margin: 30px 40px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.ing {
+    width: 14vw;
+
+}
+
+.ingresarcon .fab {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+.ingresarcon .fab:hover {
+    color: #0d4659;
+}
+.o-wrap {
+    position: relative;
+    margin-bottom: 50px;
+}
+.o-wrap hr {
+    border-color: #fff;
+    border-width: 2px;
+    width: 30%;
+}
+.fa-circle {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 0px 10px;
+    background-color: #cfe3e3;
+    color: #fff;
+}
+.formulario-login {
+    background-color: #cfe3e3;
+    border-width: 2px;
+    border-color: #444;
+    width: 50vw;
+    height: 90vh;
+    padding: 40px;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.formulario-login label {
+    color: #0d4659;
+    text-transform: capitalize;
+}
+
+.formulario-login input {
+    color: #98dae0;
+    text-align: center;
+}
+
+.rememberMe {
+    text-align: center;
+}
+
+.ingresa {
+    font-family: "Lusitana", serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #0d4659;
+    letter-spacing: 2px;
+}
+.userform {
+    box-sizing: border-box;
+    width: 60%;
+    height: 5vh;
+    color: #0d4659;
+    font-size: 0.75em;
+    background-color: white;
+    border: 2px solid white;
+    padding: 4px;
+    margin-top: 3px;
+    text-transform: uppercase;
+}
+
+.userform:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#send-button {
+    box-sizing: border-box;
+    height: 40px;
+    color: #0d4659;
+    font-size: 1em;
+    text-transform: uppercase;
+    background-color: white;
+    border: none;
+    border-radius: 0px;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+#send-button:hover {
+    color: white;
+    background-color: #0d4659;
+}
+#send-button:focus {
+    box-shadow: none;
+}
+
+
+
+/* REGISTRO */
+.section-registro {
+    overflow: hidden;
+    height: 90vh;
+    width: 100vw;
+}
+
+.tyc {
+    color: #0d4659;
+    font-family: "Work Sans", sans-serif;
+    font-size: 15px;
+}
+
+/*Imagen*/
+.register .art1 {
+    width: 50vw;
+    height: 90vh;
+    float: left;
+    display: inline-block;
+}
+
+.register .art1 img {
+    object-fit: cover;
+}
+
+.register img {
+    max-height: 100%;
+}
+
+.register .art2 {
+    float: left;
+    height: 90vh;
+    display: inline-block;
+    width: 50vw;
+}
+
+.registrarsecon {
+    height: 5vh;
+    padding-bottom: 4px;
+    border-bottom: none;
+    margin: 30px 40px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.reg {
+    width: 14%;
+}
+.reg .fab {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+.reg .fab:hover {
+    color: #0d4659;
+}
+.o-wrap2 {
+    position: relative;
+    margin: 30px 0;
+}
+.o-wrap2 hr {
+    border-color: #fff;
+    border-width: 2px;
+    width: 30%;
+}
+
+.formulario-registro {
+    background-color: #cfe3e3;
+    border-width: 2px;
+    border-color: #444;
+    width: 50%;
+    height: 90vh;
+    padding: 40px;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+.formulario-registro label {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.formulario-registro input {
+    color: #98dae0;
+    text-align: center;
+}
+.registrate {
+    font-family: "Lusitana", serif;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #0d4659;
+    letter-spacing: 2px;
+}
+
+.formulario-registro #send-button {
+    width: 25%;
+    height: 40px;
+    margin: 10;
+}
+.formulario-registro input[type="checkbox"] {
+    color: #cfe3e3;
+    font-size: 0.5em;
+}
+
+
+.tooltip.left .tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #000;
+}
+.tooltip.left .tooltip-inner {
+    max-width: 310px;
+    padding: 3px 8px;
+    color: #000;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.condiciones {
+    color: white;
+    background-color: #0d4659;
+    padding: 2px 3px;
+}
+
+
+/* CONTACTO */
+.section-contacto {
+    overflow: hidden;
+    height: 80vh;
+    width: 100vw;
+}
+
+/*Imagen*/
+.section-contacto .art1 {
+    width: 50vw;
+    height: 80vh;
+    float: left;
+    display: inline-block;
+}
+.section-contacto .art1 img {
+    object-fit: cover;
+}
+
+/*Formulario*/
+.section-contacto .art2 {
+    float: left;
+    height: 80vh;
+    display: inline-block;
+}
+
+.section-contacto .formulario {
+    background-color: #cfe3e3;
+    border-width: 2px;
+    border-color: #444;
+    width: 50vw;
+    height: 80vh;
+    padding: 40px;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    display: inline-block;
+}
+
+.section-contacto form label {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-contacto form input {
+    color: #98dae0;
+    text-align: center;
+}
+.section-contacto .contactanos {
+    font-family: "Lusitana", serif;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #0d4659;
+    letter-spacing: 2px;
+    padding: 10px 0;
+}
+
+.section-contacto textarea {
+    border-style: none;
+    outline-color: #cfe3e3;
+    resize: none;
+    width: 60%;
+    color: #0d4659;
+    font-size: 0.75em;
+    background-color: white;
+    margin-top: 3px;
+    text-transform: uppercase;
+    overflow: auto;
+    padding: 10px;
+}
+
+.mensaje-contacto {
+    height: 15vh;
+}
+
+.section-contacto form input[type="checkbox"] {
+    color: #cfe3e3;
+    font-size: 0.5em;
+}
+
+.contacto-mensaje-enviado h3 {
+  color: #0d4659;
+  font-family: "Work Sans", sans-serif;
+  font-size: 17px;
+  font-weight: lighter;
+  margin: 30px 10px 10px;
+}

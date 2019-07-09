@@ -1,0 +1,482 @@
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+
+/* media query responsive header */
+@media (max-width: 992px) {
+    .header-container {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        align-content: space-between;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+    .main-navbar {
+        margin-left: 10px;
+    }
+
+    .header-logo,
+    .main-navbar,
+    .user-navbar {
+        width: 33%;
+    }
+    .header-logo img {
+        max-width: 50%;
+        padding-top: 3px;
+    }
+    .main-navbar .navbar-toggler {
+        margin-left: 0;
+    }
+
+    .search input {
+        width: 100px;
+        outline: none;
+    }
+
+    .dropdown-user-menu {
+        display: block;
+    }
+
+    .no-dropdown-user-menu {
+        display: none;
+    }
+
+    .main-menu-large-screen {
+        display: none;
+    }
+    .main-menu-small-screen {
+        display: flex;
+    }
+
+    .search-menu-large-screen {
+        display: none;
+    }
+
+    .menu-floki {
+        display: none;
+    }
+
+    .shopping-cart p {
+        font-size: 8px;
+    }
+
+    .main-menu-small-screen nav button {
+        margin: 2px;
+    }
+}
+
+/* media query responsive HEADER */
+@media (max-width: 600px) {
+
+    .marquee {
+      display: none;
+    }
+}
+
+
+/* media query responsive FOOTER */
+@media (max-width: 600px) {
+
+    .main-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+    .footer-social {
+        margin: 0;
+        padding: 0;
+    }
+    .main-footer ul {
+        padding: 0;
+        margin: 20px auto ;
+    }
+
+}
+
+
+
+/* media query responsive HOME */
+@media (max-width: 992px) {
+    /* stripe */
+    .home-stripe {
+        background-color: #cfe3e3;
+        padding: 5px 0;
+        margin: 30px 0;
+    }
+
+    .home-stripe h1 {
+        font-size: 20px;
+    }
+
+    .home-categorias {
+        margin-bottom: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: repeat(2, 1fr);
+    }
+
+    .productos-top {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 1fr;
+        grid-gap: 20px;
+        margin: auto;
+        padding: 3% 5%;
+    }
+
+    .texto-categoria {
+        height: 15%;
+        top: 80%;
+        opacity: 1;
+        transition: opacity 2s;
+    }
+
+    .texto-categoria h1 {
+        font-family: "Work Sans", sans-serif;
+        font-size: 4vw;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        text-align: center;
+        white-space: wrap;
+        margin: auto;
+        margin-top: 7.5%;
+        top: 80%;
+        transform: translate(0%, -50%);
+    }
+
+
+    .home-parallax {
+      /* The image used */
+      background-image: url("../images/parallax/living1.jpg");
+    /* Full height */
+      height: 80vh;
+
+
+      /* Create the parallax scrolling effect */
+      background-attachment: fixed;
+      background-position: top;
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+
+    .div-inside-home-parallax{
+      padding-top: 32vh;
+
+    }
+
+    .home-parallax h1{
+      font-size: 3em;
+      width: 10em;
+      padding: 10px;
+    }
+
+    .productos-top-title h1 {
+        font-size: 2em;
+        width: 13em;
+      }
+
+      .producto-top a {
+          font-size: 15px;
+          padding: 5px;
+          width: 90px;
+          margin: 10px auto;
+      }
+
+}
+
+
+
+
+@media (max-width: 600px) {
+    /* stripe */
+    .home-stripe {
+        background-color: #cfe3e3;
+        padding: 5px 0;
+        margin: 10px 0 30px;
+    }
+
+    .home-stripe h1 {
+        font-size: 20px;
+    }
+
+    .home-categorias {
+        margin-bottom: 30px;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
+    }
+
+    .productos-top {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: auto;
+    }
+
+
+    .texto-categoria {
+        background-color: rgba(207, 227, 227, 0.7);
+        opacity: 1;
+        transition: opacity 2s;
+        height: 15%;
+        top: 80%;
+    }
+
+    .texto-categoria h1 {
+        font-size: 5vw;
+        margin: auto;
+        margin-top: 7.5%;
+        top: 80%;
+        transform: translate(0%, -50%);
+    }
+
+
+    .home-parallax {
+      height: 80vh;
+      background-size: auto;
+    }
+
+    .div-inside-home-parallax{
+      padding-top: 32vh;
+
+    }
+
+    .home-parallax h1{
+      font-size: 2.5em;
+      width: 9em;
+      padding: 10px;
+    }
+
+    .productos-top-title h1 {
+        font-size: 1.5em;
+        width: 11em;
+      }
+
+      .producto-top a {
+          font-size: 15px;
+          padding: 5px;
+          width: 90px;
+          margin: 10px auto;
+      }
+
+}
+
+
+/* media query responsive SHOP */
+@media (max-width: 992px) {
+  .contenedor-shop {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 20px 1fr;
+      grid-gap: 20px;
+      margin: auto;
+  }
+
+  .menu-shop {
+      display: none;
+  }
+
+  .menu-shop-mobile{
+    grid-area: 1 / 1 / span 1 / span 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    /* position: sticky;
+    top: 7vh; */
+
+  }
+
+  .menu-shop-mobile span{
+    font-family: "Work Sans", sans-serif;
+    font-size: 13px;
+
+    color: #0d4659;
+    text-transform: uppercase;
+    padding: 10px;
+
+    }
+
+
+  .menu-shop-mobile a:hover {
+    text-decoration: none;
+    color: #98DAE0;
+  }
+
+
+
+  .contenedor-productos {
+      grid-area: 2 / 1 / span 1 / span 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  .section-productos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+      grid-gap: 20px;
+      margin: auto;
+      padding: 3% 5%;
+  }
+}
+
+@media (max-width: 500px) {
+  .section-productos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+      grid-gap: 20px;
+      margin: auto;
+      padding: 3% 5%;
+  }
+
+  a.page-link, .page-link, .page-item.active .page-link {
+      font-size: 10px;
+      padding: 1em 1.5em;
+      margin: 3px;
+
+  }
+}
+
+/* media query responsive PRODUCTO */
+@media (max-width: 992px) {
+  .contenedor-producto {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 40px auto;
+      width: 80vw;
+  }
+
+  .fotos-producto {
+      display: flex;
+      justify-content: center;
+  }
+
+  .fotos-producto img {
+      object-fit: cover;
+      padding: 2px;
+      resize: 50%;
+      width: 80%;
+      margin: 0 auto;
+  }
+
+  .datos-producto {
+      margin: 20px auto 0;
+      width: 80%;
+  }
+
+  .productos-recomendados {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  .te-puede-gustar {
+      margin: 20px 0 10px 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .productos-recomendados {
+      grid-template-columns: 1fr;
+  }
+  .te-puede-gustar h1 {
+      font-family: "Work Sans", sans-serif;
+      font-size: 1em;
+  }
+
+}
+
+
+
+/* media query responsive LOGIN */
+@media (max-width: 992px) {
+    .formulario-login {
+        width: 100%;
+        padding-top: 30px;
+    }
+    .ing {
+        width: 50%;
+    }
+
+    .userform {
+        width: 70%;
+    }
+}
+@media (max-width: 768px) {
+    .userform {
+        width: 90%;
+    }
+
+}
+
+
+/* media query responsive REGISTRO */
+@media (max-width: 992px) {
+    .art2 {
+        width: 100%;
+        display: block;
+    }
+    .formulario-registro {
+        width: 100%;
+        padding-top: 30px;
+    }
+    .reg {
+        width: 50%;
+    }
+    .registrate {
+        margin-bottom: 20px;
+    }
+    .formulario-registro #nombre {
+        margin-top: 20px;
+    }
+    .formulario-registro #send-button {
+        width: 40%;
+    }
+}
+
+
+/* media query responsive CONTACTO */
+
+@media (max-width: 992px) {
+    .section-contacto .art2 {
+        width: 100%;
+        display: block;
+    }
+    .section-contacto .formulario {
+        width: 100%;
+        padding-top: 30px;
+    }
+    .section-contacto .reg {
+        width: 50%;
+    }
+    .section-contacto .registrate {
+        margin-bottom: 20px;
+    }
+    .section-contacto #nombre {
+        margin-top: 20px;
+    }
+    .section-contacto #send-button {
+        margin-top: 10px;
+    }
+    .section-contacto textarea {
+        width: 70%;
+      }
+}
+
+@media (max-width: 768px) {
+.section-contacto textarea {
+    width: 90%;
+  }
+}
+
+
+/* media query responsive PERFIL */
+
+
+/* media query responsive ADMIN */
+
+
+
+/* media query responsive CHECKOUT */

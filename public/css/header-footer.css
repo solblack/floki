@@ -1,0 +1,357 @@
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+/* HEADER */
+header {
+    background-color: rgba(252, 252, 252, 0.95);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05),
+        0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+.marquee {
+    background-color: #cfe3e3;
+    font-family: "Work Sans", sans-serif;
+    color: #0d4659;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+.marquee {
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  /* show the marquee just outside the paragraph */
+  animation: marquee 40s linear infinite;
+}
+
+.marquee span:hover {
+  animation-play-state: paused
+}
+
+
+/* Make it move */
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+.header-container {
+    padding: 0;
+}
+
+.hr-header {
+    color: #cfe3e3;
+    margin: 0;
+}
+
+.dropdown-item {
+    background-color: transparent !important;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.user-navbar button {
+    background-color: rgba(255, 0, 0, 0);
+    border: none;
+    outline: none;
+    color: #0d4659;
+    font-size: 16px;
+    font-family: "Work Sans", sans-serif;
+    padding: 8px 8px 0;
+}
+.user-navbar button:hover {
+    color: #98dae0;
+}
+
+/* SHOPPING CART */
+.shopping-cart {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.shopping-cart p {
+    color: #0d4659;
+    font-size: 12px;
+    font-family: "Work Sans", sans-serif;
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
+.fa-shopping-cart:hover {
+    color: #98dae0;
+}
+
+.shopping-cart p:hover {
+    color: #98dae0;
+    text-decoration: none;
+}
+
+.cart-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 11px;
+}
+
+.cart-menu button {
+    border-style: solid;
+    border-color: #0d4659;
+    border-width: thin;
+    padding: 8px;
+    margin: 15px 0 0 0;
+}
+
+.cart-menu button a {
+    color: #0d4659;
+    font-size: 12px;
+    font-family: "Work Sans", sans-serif;
+}
+
+.cart-menu {
+    padding: 10px 20px 0;
+}
+
+.li-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.li-cart-total {
+    margin: 10px 0 0;
+    font-weight: bold;
+    font-family: "Work Sans", sans-serif;
+}
+
+/* user navbar */
+
+.dropdown-user-menu {
+    display: none;
+}
+.no-dropdown-user-menu {
+    display: block;
+}
+
+.navbar .nav-item,
+.user-navbar .navbar-toggler {
+    color: #0d4659;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.navbar a,
+.navbar button {
+    color: #0d4659;
+    /* text-transform: uppercase; */
+    outline: none;
+}
+
+.navbar a:hover {
+    color: #98dae0;
+}
+.user-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.user-navbar .nav-link {
+    /* padding-right: 10px; */
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 8px 8px 0;
+}
+
+/* header: logo */
+.header-logo {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.header-logo img {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2px;
+}
+
+/* main navbar */
+
+.main-menu-large-screen {
+    display: flex;
+}
+.main-menu-small-screen {
+    display: none;
+}
+
+.navbar .btn-menu {
+    border: none;
+    text-transform: uppercase;
+    font-family: "Work Sans", sans-serif;
+    color: #ffffff;
+    background-color: #0d4659;
+    padding: 13px;
+    font-size: 13px;
+}
+.btn-menu:hover {
+    background-color: #cfe3e3;
+    color: #0d4659;
+    text-decoration: none;
+}
+.menu-floki {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    /* margin-bottom: 5px; */
+    /* position: relative; */
+}
+
+.menu-floki-links {
+    width: 100vw;
+    display: inline-flex;
+    justify-content: center;
+    padding: auto;
+    position: absolute;
+    z-index: 10;
+}
+.menu-floki-links li {
+    margin: 0 15px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.dropdown-item {
+    color: #0d4659;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.search-menu-large-screen {
+    position: relative;
+    z-index: 20;
+    font-size: 13px;
+    margin: 3px;
+}
+
+.navbar-expand-lg {
+    padding: 0;
+    margin: 0;
+}
+.formu-inline {
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 150px;
+    outline: none;
+}
+
+.form-control,
+.btn,
+.search {
+    outline: none;
+}
+
+.search button {
+    border: none;
+    color: #0d4659;
+    outline: none;
+}
+.search button:hover {
+    background-color: #0d4659;
+    color: #fff;
+}
+.search button:active {
+    background-color: #0d4659;
+    color: #fff;
+    outline: none;
+}
+.search input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+}
+
+
+
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+/* FOOTER */
+
+.main-footer {
+    background-color: #cfe3e3;
+    color: #0d4659;
+    text-align: center;
+    /* margin-top: 30px; */
+    padding: 15px 0 0 0;
+    text-transform: uppercase;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    width: 100%;
+}
+.main-footer a {
+    text-decoration: none;
+}
+.dropdown-item {
+    color: #0d4659;
+}
+.footer-social h3 {
+    font-size: 13px;
+}
+
+.footer-social a {
+    padding: 0px 5px;
+}
+.footer-shop li :hover,
+.footer-list li :hover,
+.footer-social a:hover {
+    color: #98dae0;
+}
+.footer-social a {
+    font-size: 17px;
+}
+.main-footer li {
+    list-style-type: none;
+}
+.footer-shop .nav-link {
+    font-size: 13px;
+}
+.footer-shop {
+    margin: 0;
+    padding: 10px 0 0;
+}
+
+.footer-list {
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social {
+    margin: 0;
+    padding: 5px 0 0;
+}

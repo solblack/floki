@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\ProductPhoto;
 use Illuminate\Http\Request;
 USE App\Product;
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Http\File;
 
 class ProductPhotoController extends Controller
 {
@@ -83,8 +86,11 @@ class ProductPhotoController extends Controller
     {
 
         $photo = ProductPhoto::find($id);
-        $productid=$photo->product_id;
+        $productid= $photo->product_id;
+        $path = "uploads/product_photos/" . $photo->filename;
+        unlink($path);
         $photo->delete();
         return redirect('/admin/showproduct/'.$productid);
     }
 }
+

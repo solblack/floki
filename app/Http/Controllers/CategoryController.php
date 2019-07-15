@@ -89,6 +89,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Category $category)
     {
         //
@@ -102,8 +103,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+
         $category = Category::find($id);
-            $category->delete();
+        $category->delete();
 
 
         $categories = Category::all();

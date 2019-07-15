@@ -2,6 +2,10 @@
 
 @section('title', 'Shop - FLOKI Deco & Design')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/producto.css') }}"/>
+@endsection
+
 @section('scripts')
 <script src="{{ asset('js/producto.js') }}"></script>
 @endsection
@@ -13,7 +17,6 @@
 <div class="contenedor-producto">
 
         <div class="fotos-producto">
-
              <div class="photo-product-main" >
                <i id="previousPhoto" class="fas fa-chevron-left"></i>
                @foreach ($product->productPhotos as $productPhoto)
@@ -35,6 +38,15 @@
              <p>{{ $product->description }}</p>
 
              <p>STOCK: {{ $product->stock }} unidades.</p>
+
+             <hr class="tag-line">
+
+             <div class="tags-categorias">
+
+               @foreach ($product->categories as $category)
+                   <button class="btn-tag" type="button" name="button"># {{ $category->name }}</button>
+               @endforeach
+             </div>
 
              <form class="form-producto" action="/addtocart" method="post">
                @csrf
@@ -65,13 +77,15 @@
                  </select>
 
                </div>
-
+               @if (isset($currentUser))
+               <input type="hidden" name="user_id" value={{$currentUser->id}}>
+               @endif
               <input type="hidden" name="id" value="{{ $product->id }}">
               <input type="hidden" name="name" value="{{ $product->name }}">
               <input type="hidden" name="price" value="{{ $product->price }}">
               <input type="hidden" name="photo" value="{{$product->productPhotos->first()->filename }}">
 
-              <button type="submit" name="button">COMPRAR</button>
+              <button class="btn-comprar" type="submit" name="button">COMPRAR</button>
              </form>
 
 
@@ -95,18 +109,28 @@
     @foreach ($productsRecomendados as $product)
 
       <article class="producto-recomendado">
+
         <div class="producto-recomendado-photo">
-
-          @foreach ($product->productPhotos as $productPhoto)
-            <img  class="productPhotosHover" class="img-fluid" src="/uploads/product_photos/{{$productPhoto->filename}}"
-                        alt="">
-          @endforeach
-
+            <a href="/product/{{ $product->id }}">
+                @foreach ($product->productPhotos as $productPhoto)
+                <img  class="productPhotosHover" class="img-fluid" src="/uploads/product_photos/{{$productPhoto->filename}}"
+                              alt="">
+                @endforeach
+            </a>
         </div>
-        <h2>{{ $product->name }}</h2>
-        <h3>${{ $product->price }}</h3>
+        <h2><a href="/product/{{ $product->id }}">{{ $product->name }}</a></h2>
+        <h3><a href="/product/{{ $product->id }}">${{ $product->price }}</a></h3>
 
-        <a href="/product/{{ $product->id }}">Ver más</a>
+        <a class="verMas" href="/product/{{ $product->id }}">Ver más</a>
+
+        <hr class="tag-line">
+
+        <div class="tags-categorias">
+
+          @foreach ($product->categories as $category)
+              <button class="btn-tag" type="button" name="button"># {{ $category->name }}</button>
+          @endforeach
+        </div>
         {{-- @foreach ($product->categories as $category)
             <p>{{ $category->name }}</p>
         @endforeach --}}

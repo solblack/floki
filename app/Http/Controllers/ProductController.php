@@ -8,6 +8,8 @@ use App\ProductPhoto;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Cart;
+
 
 class ProductController extends Controller
 {
@@ -20,7 +22,20 @@ class ProductController extends Controller
     {
         //  $products = Product::all();
 
-        $products = Product::paginate(20);
+        if (isset($_GET["order"])) {
+
+            if ($_GET["order"] == 'asc') {
+                $products = Product::orderBy('price')->paginate(20);
+            } elseif ($_GET["order"] == 'desc') {
+                $products = Product::orderBy('price', 'DESC')->paginate(20);
+            } elseif (is_numeric($_GET["order"])) {
+                $products = Product::where('price', '<', $_GET["order"])->orderBy('price', 'DESC')->paginate(20);
+            } else {
+                $products = Product::paginate(20);
+            };
+        } else {
+            $products = Product::paginate(20);
+        };
 
         $categories = Category::all();
 
@@ -37,22 +52,38 @@ class ProductController extends Controller
     public function create(Request $data)
     {
 
+
         $product = Product::create([
             'name' => $data['name'],
             'price' => $data['price'],
             'stock' => $data['stock'],
             'description' => $data['description']
         ]);
-        $product->categories()->attach($data->category);
-        $route = $data['filename']->store('public/uploads/product_photos');
-        $filename = basename($route);
+
+
+        foreach ($data['category'] as $category) {
+          $product->categories()->attach($category);
+        }
+
+
+
+        foreach ($data['filename'] as $photoFile) {
+
+
+        $destinationPath = public_path('uploads/product_photos');
+        $filename = $product->id . "-" . $photoFile->getClientOriginalName();
+        $photoFile->move($destinationPath, $filename);
         ProductPhoto::create([
             'filename' => $filename,
             'product_id' => $product->id
         ]);
 
-        $products = Product::all();
-        return view('/productList')->with('products', $product);
+        $photos = $product->ProductPhotos;
+
+        }
+
+        $products = Product::orderBy('id', 'DESC')->paginate(20);
+        return redirect('/admin/productslist')->with('products', $products);
     }
 
     public function search()
@@ -68,23 +99,40 @@ class ProductController extends Controller
             ->with('categories', $categories);
     }
 
-    public function orderByPrice($parametro)
+
+    public function categories($categoria)
     {
-        if ($parametro == 'asc') {
-            $products = Product::orderBy('price')->paginate(20);
-        } elseif ($parametro == 'desc') {
-            $products = Product::orderBy('price', 'DESC')->paginate(20);
-        } elseif (is_numeric($parametro)) {
-            $products = Product::where('price', '<', $parametro)->orderBy('price', 'DESC')->paginate(20);
+
+
+        if (isset($_GET["order"])) {
+
+            if ($_GET["order"] == 'asc') {
+                $products = Product::whereHas('categories', function ($query) use ($categoria) {
+                    $query->where('url', $categoria);
+                })->orderBy('price')->paginate(20);
+            } elseif ($_GET["order"] == 'desc') {
+                $products = Product::whereHas('categories', function ($query) use ($categoria) {
+                    $query->where('url', $categoria);
+                })->orderBy('price', 'DESC')->paginate(20);
+            } elseif (is_numeric($_GET["order"])) {
+                $products = Product::whereHas('categories', function ($query) use ($categoria) {
+                    $query->where('url', $categoria);
+                })->where('price', '<', $_GET["order"])->orderBy('price', 'DESC')->paginate(20);
+            } else {
+                $products = Product::whereHas('categories', function ($query) use ($categoria) {
+                    $query->where('url', $categoria);
+                })->paginate(20);
+            };
         } else {
-            $products = Product::paginate(20);
-        }
+            $products = Product::whereHas('categories', function ($query) use ($categoria) {
+                $query->where('url', $categoria);
+            })->paginate(20);
+        };
 
-        $categories = Category::all();
 
-        return view('shop')->with('products', $products)
-            ->with('categories', $categories);
+        return view('shop')->with('products', $products);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -151,29 +199,41 @@ class ProductController extends Controller
     {
 
         $product = Product::find($data->id);
+
+        // if(count($product->ProductPhotos)==0){
+        //     $error = "No puede subir productos sin foto";
+        //     return view('editproduct')->with('error', $error)->with('product', $product);
+        // }
+
         $product->name = $data->name;
         $product->price = $data->price;
         $product->description = $data->description;
         $product->stock = $data->stock;
         $product->save();
-        $product->categories()->attach($data->category);
 
-        $filename = null;
-        if($data->hasfile('filename')){
-            $destinationPath = public_path('uploads/product_photos');
-            $filename = $product->id . $data->file('filename')->getClientOriginalName();
-            $data->file('filename')->move($destinationPath, $filename);
-            ProductPhoto::create([
-                'filename' => $filename,
-                'product_id' => $product->id
-            ]);
 
+        $product->categories()->sync($data->category);
+
+
+        // $filename = null;
+        if ($data->hasfile('filename')) {
+
+            foreach ($data['filename'] as $photoFile) {
+
+                  $destinationPath = public_path('uploads/product_photos');
+                  $filename = $product->id . "-" . $photoFile->getClientOriginalName();
+                  $photoFile->move($destinationPath, $filename);
+                  ProductPhoto::create([
+                      'filename' => $filename,
+                      'product_id' => $product->id
+                  ]);
+            }
         };
 
         $products = Product::orderBy('id', 'DESC')->paginate(20);
         $categories = Category::all();
 
-        return view('productlist')->with('products', $products);
+        return redirect('/admin/productslist')->with('products', $products);
     }
 
 
@@ -186,124 +246,21 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
         $product = Product::find($id);
-        $product->delete();
-        return redirect('/admin/productlist');
-    }
 
-    public function categories($url)
-    {
+        $photos = $product->ProductPhotos;
 
+        foreach ($photos as $photo) {
+            $path = "uploads/product_photos/" . $photo->filename;
+            if (is_file($path)){
+            unlink($path);
+            }
+            }
+            $product->delete();
+            $products = Product::orderBy('id', 'DESC')->paginate(20);
+            $categories = Category::all();
 
-        $products = Product::whereHas('categories', function ($query) use ($url) {
-            $query->where('url', $url);
-        })->paginate(20);
-
-
-
-        return view('shop')->with('products', $products);
-    }
-
-
-    public function addToCart(Request $request)
-    {
-        
-        $product = $request->all();
-
-
-
-        if (Session::has('cart')) {
-            $cart = Session::get('cart');
+            return redirect('/admin/productslist')->with('products', $products);
         }
-
-        if (isset($cart[$product['id']])) :
-            $cart[$product['id']]['cantidad'] += $product['cantidad'];
-        else :
-            $cart[$product['id']] = $product;
-        endif;
-
-        Session::put('cart', $cart);
-        $cartsInSession = Session::get('cart');
-
-        $cartItems = count($cartsInSession);
-
-        return redirect()->back()->with('message', 'Hay nuevos productos en el carrito.')
-            // ->with('cart_items', $cartItems)
-            ->with('success', true);
     }
-
-    public function editCart(Request $request)
-    {
-        $cartCambios = $request->all();
-
-        // BORRA ARRAY EN SESSION
-        // Session::forget('cart');
-
-        $cart = Session::get('cart');
-
-        if (count(Session::get('cart')) == 1) {
-            Session::forget('cart');
-
-            return redirect('home');
-        } else {
-            $cartIdABorrar = $cartCambios['cart-id'];
-
-            unset($cart[$cartIdABorrar]);
-
-            Session::put('cart', $cart);
-
-            return redirect()->back();
-        }
-
-    }
-
-    public function updateCart(Request $request){
-
-        // dd($request);
-        $product = $request->all();
-        // dd($product);
-
-        if (Session::has('cart')) {
-            $cart = Session::get('cart');
-        }
-
-        if (isset($cart[$product['id']])) :
-            $cart[$product['id']]['cantidad'] = $product['cantidad'];
-        else :
-            $cart[$product['id']] = $product;
-        endif;
-
-        Session::put('cart', $cart);
-        $cartsInSession = Session::get('cart');
-        // dd($cartsInSession);
-        $cartItems = count($cartsInSession);
-
-    }
-
-    public function deleteFromCart(Request $request){
-
-        $cartCambios = $request->all();
-
-        $cart = Session::get('cart');
-
-            $cartIdABorrar = $cartCambios['id'];
-
-            unset($cart[$cartIdABorrar]);
-
-            Session::put('cart', $cart);
-
-        }
-
-
-
-    public function cart()
-    {
-
-
-        $products = Product::all();
-
-
-
-        return view('cart')->with('products', $products);
-    }
-}

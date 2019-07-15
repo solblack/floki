@@ -3,6 +3,138 @@
 
 
 /* CART */
+
+.cart-container {
+  padding: 50px 0 30px;
+  background-image: url("../images/parallax/backgrounds/living-chair.jpg");
+
+  /* Full height */
+  min-height: 85vh;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cart-box{
+  background-color: rgba(238, 238, 238, 0.8);
+  padding: 50px 0px;
+  margin: 3% 7%;
+}
+
+.no-items {
+  font-family: "Lusitana", serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0d4659;
+  font-weight: 100;
+  text-align: center;
+  font-size: 25px;
+  margin: 100px auto 200px ;
+  padding: 10px;
+}
+
+.none-display{
+  display: none;
+}
+
+.cart-title{
+  border-color:  rgba(207, 227, 227, 0.9);
+  border-width: 5px;
+
+  margin: 10px auto;
+  padding: 5px;
+  width: 30%;
+}
+
+.cart-title h1{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 2em;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 10px auto;
+  width: 93%;
+  padding: 10px;
+  background-color: rgba(207, 227, 227, 0.9);
+
+
+}
+
+table {
+  width: 80% !important;
+  margin: auto;
+  border: 1px solid white;
+}
+
+table .thead-light th {
+  font-family: "Work-Sans", sans-serif !important;
+  background-color: #CFE3E3 !important;
+  color: #fff !important;
+  font-size: 20px !important;
+  font-weight: lighter !important;
+  border: none !important;
+}
+
+.img-grid-admin{
+  border: none !important;
+  height: 100px !important;
+}
+
+table .thead-light td {
+  height: 100px !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid #CFE3E3;
+  background-color: #fff !important;
+
+}
+
+.cantidadproductos{
+  border: 1px solid #CFE3E3 !important;
+  padding-left: 15px !important;
+}
+
+.divcheckout, .checkouttotal{
+  font-family: "Lusitana", serif !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0d4659;
+  font-weight: 100;
+  text-align: center;
+  font-size: 25px;
+  margin: 20px auto 10px;
+}
+
+.buttonssubmit{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+}
+
+.buttonssubmit a{
+  padding: 10px;
+}
+
+.buttonssubmit  button{
+  text-decoration: none;
+  text-align: center;
+  font-family: "Work Sans", sans-serif;
+  font-size: 15px;
+  background-color: #cfe3e3;
+  color: #0d4659;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 20px;
+  height: 40px;
+  /* width: 100px; */
+  border: none;
+  margin: auto;
+}
+
+
+
 .thead-light .btn-delete-out{
     background-color: rgba(255, 0, 0, 0);
     border: none;
@@ -46,4 +178,65 @@ border: none;
 .thead-light th{
     font-family: "Work Sans", sans-serif;
     font-weight: 100;
+}
+
+
+/* media query responsive CART */
+
+@media (max-width: 992px) {
+
+  .cart-title h1{
+    font-size: 3em;
+  }
+
+  table .thead-light th {
+    font-size: 15px !important;
+  }
+
+
+}
+
+@media (max-width: 600px) {
+
+
+  .cart-container {
+    padding: 20px 0 !important;
+  }
+
+  .cart-foto img{
+    width: 30px;
+    height: 35px;
+    object-fit: scale-down;
+  }
+
+  .cart-title{
+    margin: 0px auto 20px;
+  }
+
+  .cart-title h1{
+    font-size: 2em ;
+  }
+
+  table .thead-light th {
+    font-size: 12px !important;
+  }
+
+  .buttonssubmit a button{
+    font-size: 12px !important;
+    height: 60px !important;
+  }
+
+  .divcheckout, .checkouttotal{
+    font-size: 20px !important;
+  }
+
+  table {
+    width: 100% !important;
+  }
+
+  .no-items {
+    font-size: 15px;
+    margin: 100px 10px 300px
+  }
+
 }

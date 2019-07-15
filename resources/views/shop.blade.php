@@ -2,6 +2,10 @@
 
 @section('title', 'Shop - FLOKI Deco & Design')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/shop.css') }}"/>
+@endsection
+
 @section('scripts')
 <script src="{{ asset('js/changePhotoOnHover.js') }}"></script>
 @endsection
@@ -29,17 +33,18 @@
             <p>Ordenar por precio</p>
             <ul>
                 <li>
-                    <a href="/shop/order/asc">Menor a mayor</a>
+                    <a href="{{Request::url()}}?order=asc">Menor a mayor</a>
                 </li>
                 <li>
-                    <a href="/shop/order/desc">Mayor a menor</a>
+                    <a href="{{Request::url()}}?order=desc">Mayor a menor</a>
                 </li>
                 <li>
-                    <a href="/shop/order/5000">Hasta $5.000</a>
+                    <a href="{{Request::url()}}?order=5000">Hasta $5.000</a>
                 </li>
             </ul>
 
         </ul>
+
 
     </div>
 
@@ -80,13 +85,13 @@
             Ordenar por precio</a>
             <ul class="dropdown-menu " aria-labelledby="ordenarPorPrecio">
                 <li class="dropdown-item">
-                    <a href="/shop/order/asc">Menor a mayor</a>
+                    <a href="{{Request::url()}}?order=asc">Menor a mayor</a>
                 </li>
                 <li class="dropdown-item">
-                    <a href="/shop/order/desc">Mayor a menor</a>
+                    <a href="{{Request::url()}}?order=desc">Mayor a menor</a>
                 </li>
                 <li class="dropdown-item">
-                    <a href="/shop/order/5000">Hasta $5.000</a>
+                    <a href="{{Request::url()}}?order=5000">Hasta $5.000</a>
                 </li>
             </ul>
 
@@ -102,18 +107,15 @@
             @foreach ($products as $product)
 
               <article class="producto js-img-hover">
-                      <div id="photo-shop" >
+                    <a href="/product/{{ $product->id }}">  <div id="photo-shop" >
                         @foreach ($product->productPhotos as $productPhoto)
-                          <img  class="productPhotosHover" class="img-fluid" src="/uploads/product_photos/{{$productPhoto->filename}}"
+                            <img  class="productPhotosHover" class="img-fluid" src="/uploads/product_photos/{{$productPhoto->filename}}"
                                       alt="">
                         @endforeach
-                      </div>
-                  <h2>{{ $product->name }}</h2>
+                      </div></a>
+                    <a href="/product/{{ $product->id }}"><h2>{{ $product->name }}</h2></a>
 
-                  <h3>${{ $product->price }}</h3>
-{{-- @foreach ($product->categories as $category)
-    <p>{{ $category->name }}</p>
-@endforeach --}}
+                    <a href="/product/{{ $product->id }}"><h3>${{ $product->price }}</h3></a>
 
                   <a href="/product/{{ $product->id }}">Ver más!</a>
 
@@ -126,9 +128,21 @@
                    <input type="hidden" name="name" value="{{ $product->name }}">
                    <input type="hidden" name="price" value="{{ $product->price }}">
                    <input type="hidden" name="photo" value="{{$product->productPhotos->first()->filename }}">
-
-                   <button type="submit" name="button">COMPRAR</button>
+                   @if (isset($currentUser))
+                   <input type="hidden" name="user_id" value={{$currentUser->id}}>
+                   @endif
+                   <button class="btn-comprar" type="submit" name="button">COMPRAR</button>
                   </form>
+
+                  <hr class="tag-line">
+
+                  <div class="tags-categorias">
+
+                    @foreach ($product->categories as $category)
+                        <button class="btn-tag" type="button" name="button"># {{ $category->name }}</button>
+                    @endforeach
+                  </div>
+
               </article>
               @endforeach
           </section>

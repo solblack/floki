@@ -2,42 +2,44 @@
 
 @section('title', 'Login - FLOKI Deco & Design')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/forms.css') }}"/>
+@endsection
+
 
 @section('content')
-  <section class="section-login">
-      <div class="login">
-          <!--Imagen-->
-          <article class="art1 d-none d-lg-block">
-              <img src="images/home-office.jpg" alt="living" width="100%" height="859px" />
-          </article>
-          <!--Form-->
-          <article class="art2">
-              <form class="formulario-login" action="{{ route('login') }}" method="post">
+  <section class="form-container">
+    <div class="div-inside-container">
+
+      <div class="form-box" data-aos="zoom-in" data-aos-duration="1000">
+
+        <h1 class="form-title">
+            ¡Ingresá!
+        </h1>
+        <div class="validacion-redes">
+            <a class="redes-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="redes-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="redes-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <div class="o-wrap">
+            <div class="hr">
+              <hr>
+              <hr>
+            </div>
+            <i class="far fa-circle"></i>
+        </div>
+
+
+          <form class="formulario-login" action="{{ route('login') }}" method="post">
                   @csrf
 
-                  <p class="ingresa">
-                      ¡Ingresá!
-                  </p>
-                  <div class="ingresarcon">
-                      <article class="ing">
-                          <i class="fab fa-google-plus-g"></i>
-                      </article>
-                      <article class="ing">
-                          <i class="fab fa-facebook-f"></i>
-                      </article>
-                      <article class="ing">
-                          <i class="fab fa-twitter"></i>
-                      </article>
-                  </div>
-
-                  <div class="o-wrap">
-                      <hr />
-                      <i class="far fa-circle"></i>
-                  </div>
-
-
-                  <p>
-                    <input id="email" type="email" class="userform" name="email" value="{{ old('email') }}"
+                    <input id="email" type="email" name="email" value="{{ old('email') }}"
                       autocomplete="email" autofocus
 
                       @error('email')
@@ -48,10 +50,9 @@
                          placeholder="Email"
                      @endif
                      >
-                  </p>
 
-                  <p>
-                    <input id="password" type="password" class="userform" name="password"
+
+                    <input id="password" type="password"  name="password"
 
 
                       @error('password')
@@ -62,44 +63,51 @@
                          placeholder="Password"
                      @endif
                      >
-                  </p>
 
+              <div class="opciones2">
                     @error('email')
                        @if (isset($message))
-                       <p class="tyc">
+                  <p class="chechbox-text">
                     {{ $message }}
-                </p>
+                  </p>
                        @enderror
                      {{-- @else
                        no hay errores de email --}}
                    @endif
 
-                  <p>
-                    <input class="tyc" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
-                    <label for="remember">Recordarme</label>
+              </div>
 
-                  </p>
 
-                  <p>
-                    <button id="send-button" type="submit" name="button" >
+              <div class="opciones" >
+                    <input class="checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
+                    <label class="checkbox-text" for="remember">Recordarme</label>
+              </div>
+
+
+
+                    <button class="send-button" id="send-button" type="submit" name="button" >
                         <i class="far fa-paper-plane"></i> Enviar
                     </button>
-                  </p>
 
-                  <div class="">
+
+                  <div class="opciones">
                     @if (Route::has('password.request'))
-                        <a class="tyc" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
+
+                        <p class="checkbox-text">
+                          <a href="{{ route('password.request') }}">
+                              {{ __('Olvidaste tu contraseña?') }}
+                          </a>
+                        </p>
+
                     @endif
                   </div>
 
-                  </div>
+
 
 
               </form>
-          </article>
-      </div>
+            </div>
+        </div>
   </section>
-  <br>
+
 @endsection

@@ -7,6 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Http\Requests;
+// namespace App\Mail;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Mail\ContactMail;
+
+
 
 
 
@@ -62,10 +70,17 @@ class ContactoController extends Controller
       {
           return redirect('contacto')->withErrors($validator->messages())->withInput();
       }
+      else{
 
-      $mensajeEnviado = "Su mensaje ha sido enviado!";
 
-      return view('contacto')->with('mensajeEnviado', $mensajeEnviado);
+        // Mail::send(new ContactMail($request));
+
+       $mensajeEnviado = "Su mensaje ha sido enviado!";
+
+       return view('contacto')->with('mensajeEnviado', $mensajeEnviado);
+      }
+
+
 
 
     }

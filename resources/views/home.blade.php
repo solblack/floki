@@ -2,22 +2,33 @@
 
 @section('title', 'FLOKI Deco & Design')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}"/>
+@endsection
+
 @section('scripts')
   <script src="{{ asset('js/changePhotoOnHover.js') }}"></script>
+  <script src="{{ asset('js/home.js') }}"></script>
 @endsection
 
 
 @section('content')
 
 
-  <div class="home-parallax">
-    <div class="div-inside-home-parallax">
-      <h1 data-aos="fade-in" data-aos-duration="2000">
-      GET INSPIRED!
-    </h1>
+
+  <div class="home-parallax-grid">
+    <div class="parallax-image paralax-home-img-1"> </div>
+    <div class="parallax-image paralax-home-img-2"> </div>
+    <div class="parallax-image paralax-home-img-3"> </div>
+    <div class="parallax-image paralax-home-img-4"> </div>
+
+    <div class="home-parallax-title" data-aos="fade-in" data-aos-duration="2000">
+        <h1 data-aos="fade-in" data-aos-duration="2000">GET INSPIRED!</h1>
     </div>
 
-</div>
+  </div>
+
+
 
 
 
@@ -102,18 +113,18 @@
 
       <article class="producto-top js-img-hover">
         <div class="producto-top-photo">
-
-          @foreach ($product->productPhotos as $productPhoto)
-            <img  class="productPhotosHover" class="img-fluid" src="/uploads/product_photos/{{$productPhoto->filename}}"
-                        alt="">
-          @endforeach
-
+            <a href="/product/{{ $product->id }}">
+              @foreach ($product->productPhotos as $productPhoto)
+              <img  class="productPhotosHover" class="img-fluid" src="/uploads/product_photos/{{$productPhoto->filename}}"
+                            alt="">
+              @endforeach
+          </a>
 
         </div>
-        <h2>{{ $product->name }}</h2>
-        <h3>${{ $product->price }}</h3>
+        <h2><a href="/product/{{ $product->id }}">{{ $product->name }}</a></h2>
+        <h3><a href="/product/{{ $product->id }}">${{ $product->price }}</a></h3>
 
-        <a href="/product/{{ $product->id }}">Ver más</a>
+        <a class="verMas" href="/product/{{ $product->id }}">Ver más</a>
       </article>
     @endforeach
   </section>

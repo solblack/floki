@@ -2,114 +2,123 @@
 <html>
 {{-- lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
 
-  <head>
+<head>
 
-            <!-- CSRF Token -->
-          <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-          <title>@yield('title')</title>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@yield('title')</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-          <!--Bootstrap-->
-          <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-          />
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-          <!--Google-->
-          <link
-          href="https://fonts.googleapis.com/css?family=Lusitana|Roboto:300,400,700"
-          rel="stylesheet"
-          />
-          <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
+    <!--Google-->
+    <link href="https://fonts.googleapis.com/css?family=Lusitana|Roboto:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
 
-          <!--FontAwesome-->
-          <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-            crossorigin="anonymous"
-          />
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
-          <!-- Favicon -->
-          <link rel="shortcut icon" href="{{ asset('images/favicon_floki') }}"  />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/favicon_floki') }}" />
 
-          <!--AOS Stylesheets-->
-          <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--AOS Stylesheets-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-          <!--Floki's Stylesheets-->
-          <link rel="stylesheet" href="{{ asset('css/style-general.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/home.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/nosotros.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/inspiracion.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/forms.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/shop.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/producto.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/checkout.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/pago-guest.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/pago-user.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/perfil.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/cart.css') }}"/>
-          <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}"/>
+    <!--Floki's Stylesheets-->
+    <link rel="stylesheet" href="{{ asset('css/style-general.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}" />
+    @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}" />
 
 
 </head>
 
 <body>
     <p class="marquee">
-      <span>
-        Registrate y obtené 15% off en tu primera compra // Envíos gratis en
-        compras superiores a $1000 // Llevá 3 o mas unidades del mismo producto
-        con 20% off
-      </span>
+        <span>
+            Registrate y obtené 15% off en tu primera compra // Envíos gratis en
+            compras superiores a $1000 // Llevá 3 o mas unidades del mismo producto
+            con 20% off
+        </span>
     </p>
 
     <header>
 
         <div class="header-container">
-
-
             {{-- menu login - register - cart --}}
             <div class="user-navbar">
                 <nav class="navbar navbar-expand-lg">
 
-                    {{-- @if (Session::has('cart'))
-                {{dd(Session::get('cart'))  }}
-                    @endif --}}
-
+                    @if(Request::path()!=="cart" && Request::path()!=="checkoutGuest" &&
+                    Request::path()!=="checkoutUser")
                     <div class="nav-item shopping-cart dropdown">
-                        @if (Session::has('cart'))
+                        @auth
+
+                        @php
+                        $carts = \App\Cart::where('user_id', Auth::user()->id)->get();
+                        $precioTotal = 0;
+                        $cantidadProductos = 0;
+                        foreach ($carts as $cart) {
+                        $cantidadProductos += $cart->quantity;
+                        $precioTotal += $cart->product->price * $cart->quantity;
+
+                        }
+                        @endphp
+
                         <a class=" dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
+                            @if(count($carts)!==0)
+                            <p>{{ $cantidadProductos }} Productos</p>
+                            @endif
+                        </a>
 
-                            @php
-                            $cantidadProductos = 0;
-                            $precioTotal = 0;
-
-                            foreach (Session::get('cart') as $cartId => $product) {
-                            $cantidadProductos += $product['cantidad'];
-                            $precioTotal += $product['price'] * $product['cantidad'];
-                            }
-
-                            @endphp
-
-
+                        @elseif (Session::has('cart'))
+                        @php
+                        $cantidadProductos = 0;
+                        $precioTotal = 0;
+                        foreach (Session::get('cart') as $cartId => $product) {
+                        $cantidadProductos += $product['cantidad'];
+                        $precioTotal += $product['price'] * $product['cantidad'];
+                        }
+                        @endphp
+                        <a class=" dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <p>{{ $cantidadProductos }} Productos</p>
                         </a>
-                        @endif
+                        @endauth
+
                         <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart "></i>
                         </a>
 
-
                         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
-                            @if (Session::has('cart'))
+
+                       @if(Auth::check() && count($carts)>0)
+
+                            <ul class="cart-menu dropdown-item">
+                                @foreach($carts as $cart)
+                                <li>
+                                    {{ $cart->quantity }} x {{ $cart->product->name}}
+                                    ${{ $cart->product->price * $cart->quantity}}
+                                </li>
+                                @endforeach
+                                <li class="li-cart-total">
+                                    Total: ${{ $precioTotal }}
+                                </li>
+                                <li class="li-cart">
+                                    <button>
+                                        <a href="/cart">Ver carrito</a>
+                                    </button>
+                                </li>
+                            </ul>
+
+                            @elseif (Session::has('cart'))
                             <ul class="cart-menu dropdown-item">
                                 @foreach (Session::get('cart') as $cartId => $product)
                                 <li>
@@ -117,41 +126,35 @@
                                     ${{ $product["price"] * $product["cantidad"] }}
                                 </li>
                                 @endforeach
-
                                 <li class="li-cart-total">
                                     Total: ${{ $precioTotal }}
                                 </li>
-
                                 <li class="li-cart">
                                     <button>
                                         <a href="/cart">Ver carrito</a>
                                     </button>
                                 </li>
-
                             </ul>
                             @else
                             <ul class="navbar-nav">
                                 <li class="dropdown-item">
                                     No hay productos en el carrito
                                 </li>
-
                             </ul>
-                            @endif
 
+                            @endauth
                         </div>
                     </div>
+                    @endif
 
                     @if (Route::has('login'))
-
                     <div class="dropdown dropdown-user-menu">
                         @auth
                         <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
                             <i class="fas fa-user-circle"></i>
-
                         </button>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <ul class="navbar-nav">
                                 <li class="dropdown-item">
@@ -186,8 +189,6 @@
                                 </li>
                             </ul>
                         </div>
-
-
                         @endauth
                     </div>
 
@@ -217,7 +218,6 @@
                                 @endif
                             </li>
                         </ul>
-
                         @endauth
                     </div>
                     @endif
@@ -243,20 +243,22 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+                                <a class="dropdown-item" href="/shop">Todas las categorias</a>
+
                                 @foreach ($categories as $category)
                                 @if ($category->is_main)
                                 <a class="dropdown-item" href="/shop/{{ $category->url }}">{{ $category->name }}</a>
                                 @endif
                                 @endforeach
 
-                                <a class="dropdown-item" href="/shop">Todas las categorias</a>
+
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/inspiration">Inspiración</a>
+                            <a class="nav-link" href="/inspiracion">Inspiración</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/nosotros">Sobre nosotros</a>
+                            <a class="nav-link" href="/nosotros">Sobre Flöki</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contacto">Contacto</a>
@@ -298,6 +300,11 @@
                                 SHOP
                             </a>
                             <ul class="collapse nav-item" id="shop">
+
+                              <li>
+                                  <a href="/shop">Todas las categorias</a>
+                              </li>
+
                                 @foreach ($categories as $category)
                                 @if ($category->is_main)
                                 <li>
@@ -306,16 +313,14 @@
                                 @endif
                                 @endforeach
 
-                                <li>
-                                    <a href="/shop">Todas las categorias</a>
-                                </li>
+
                             </ul>
                         </li>
                         <li class="dropdown-item nav-item">
                             <a class="nav-link" href="/inspiracion">Inspiración</a>
                         </li>
                         <li class="dropdown-item nav-item">
-                            <a class="nav-link" href="/nosotros">Sobre nosotros</a>
+                            <a class="nav-link" href="/nosotros">Sobre Flöki</a>
                         </li>
                         <li class="dropdown-item nav-item">
                             <a class="nav-link" href="/contacto">Contacto</a>
@@ -356,12 +361,12 @@
 
         <div class="footer-menu">
             <ul class="footer-shop ">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropup">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         shop
                     </a>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         @foreach ($categories as $category)
                         @if ($category->is_main)
                         <a class="dropdown-item" href="/shop/{{ $category->url }}">{{ $category->name }}</a>
@@ -388,10 +393,10 @@
 
         <div class="footer-list">
             <ul>
-                <li><a href="#">órdenes</a></li>
-                <li><a href="#">envíos y devoluciones</a></li>
-                <li><a href="#">f.a.q</a></li>
-                <li><a href="#">politica de privacidad</a></li>
+                <li><a href="/faq#ordenes">órdenes</a></li>
+                <li><a href="/faq#envios">envíos y devoluciones</a></li>
+                <li><a href="/faq#faq">f.a.q</a></li>
+                <li><a href="/faq#privacidad">politica de privacidad</a></li>
             </ul>
         </div>
 
@@ -413,7 +418,9 @@
 
     <!--  scripts de AOS-->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script> AOS.init();  </script>
+    <script>
+        AOS.init();
+    </script>
 
 
     <!--  scripts de Javascript-->

@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('layouts/floki-template')
+
+@section('title', 'Resetea tu contraseña - FLOKI Deco & Design')
+
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

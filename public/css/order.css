@@ -1,0 +1,45 @@
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+
+/* ORDER */
+
+.order-container {
+  padding: 50px 0 30px;
+  background-image: url("../images/parallax/backgrounds/living-chair.jpg");
+
+  /* Full height */
+  min-height: 85vh;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.order-box{
+  background-color: rgba(238, 238, 238, 0.8);
+  padding: 50px 5%;
+  margin: 3% 15%;
+}
+
+.order-details{
+  border: 3px solid  #CFE3E3;
+  padding: 50px 10%;
+  margin: 3% 7%;
+  color: #0D4659;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.order-details h2{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.7em;
+  font-weight: lighter;
+  margin: 2% 0;
+  text-transform: uppercase;
+}
+
+.order-details a:hover{
+  color: #98DAE0;
+}

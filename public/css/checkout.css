@@ -4,27 +4,149 @@
 
 /* CHECKOUT */
 
-.btn-delete {
-    border: none;
+
+.container-checkout {
+    padding: 50px 0 30px;
+    background-image: url("../images/parallax/backgrounds/living-chair.jpg");
+
+    /* Full height */
+    min-height: 85vh;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .checkout-box{
+    background-color: rgba(238, 238, 238, 0.8);
+    padding: 50px 0px;
+    margin: 3% 7%;
+  }
+
+  .no-items {
+    font-family: "Lusitana", serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: #0d4659;
-    outline: none;
-}
-.btn-delete:hover {
-    background-color: #0d4659;
-    color: #fff;
-}
-.btn-delete:active {
-    background-color: #0d4659;
-    color: #fff;
-    outline: none;
+    font-weight: 100;
+    text-align: center;
+    font-size: 25px;
+    margin: 100px auto 200px ;
+    padding: 10px;
+  }
+
+  .none-display{
+    display: none;
+  }
+
+  .checkout-title{
+    border-color:  rgba(207, 227, 227, 0.9);
+    border-width: 5px;
+
+    margin: 10px auto;
+    padding: 5px;
+    width: 30%;
+  }
+
+  .checkout-title h1{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    margin: 10px auto;
+    width: 93%;
+    padding: 10px;
+    background-color: rgba(207, 227, 227, 0.9);
+    text-transform: uppercase;
+  }
+
+.productos-title{
+  display: inline;
+  margin: 20px 7px;
+  padding: 10px;
 }
 
-.btn-delete-out{
-background-color: rgba(255, 0, 0, 0);
-border: none;
-outline: none;
-color: #0d4659;
-font-size: 16px;
-font-family: "Work Sans", sans-serif;
-/* padding: 8px 8px 0; */
+
+/* checkout */
+
+.order-list, .order-form{
+    text-transform: uppercase;
+    width:50%;
+    margin: 10px auto;
+    color: #0d4659;
 }
+
+.order-list{
+    text-align: center;
+}
+.order-list a:hover{
+    color: #cfe3e3;
+    text-decoration: none;
+
+}
+
+.order-list h2, .order-form h2{
+    font-size: 20px;
+    margin-top:20px;
+}
+
+.order-form label {
+    margin-top:10px;
+    font-size: 13px;
+}
+
+.order-form input{
+
+    color: #0d4659;
+    border: 1px solid #cfe3e3;
+
+}
+
+#addressline2{
+    margin-top: 10px;
+}
+
+.titleperfil{
+    margin-top: 20px;
+}
+
+.payment{
+    display: flex;
+    justify-content: flex-start;
+    max-height: 20vh;
+}
+
+.payment img{
+    max-height: 10vh;
+    border: 1px solid #ced4da;
+    margin: 10px 10px 10px 0;
+}
+
+.orderbutton  {
+    display:  block;
+    text-decoration: none;
+    font-family: "Work Sans", sans-serif;
+    font-size: 15px;
+    background-color: #cfe3e3;
+    color: #0d4659;
+    text-transform: uppercase;
+
+    padding: 10px 20px;
+    height: 40px;
+    /* width: 100px; */
+    border: none;
+    margin: 20px auto;
+  }
+
+  .productos-box{
+    padding: 5px 0 !important;
+  }
+  .productos-title-box{
+    padding: 10px 0 !important;
+  }
+  .productos-checkout{
+    font-size: 14px !important;
+  }

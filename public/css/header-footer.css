@@ -184,10 +184,10 @@ header {
 }
 
 .header-logo img {
-    width: 70%;
+    width: 55%;
     display: block;
     margin: auto;
-    margin-bottom: 2px;
+    margin-bottom: 0;
 }
 
 /* main navbar */
@@ -339,6 +339,7 @@ header {
 }
 .footer-shop .nav-link {
     font-size: 13px;
+
 }
 .footer-shop {
     margin: 0;

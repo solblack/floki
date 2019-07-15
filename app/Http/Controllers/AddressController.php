@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use Illuminate\Http\Request;
+use App\User;
 
 class AddressController extends Controller
 {
@@ -44,11 +45,11 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
-    {
-        //
+    protected function showAddresses($id){
+        $user = User::find($id);
+        $addresses = Address::where('user_id', $id)->get();
+        return view('addresses')->with('addresses', $addresses)->with('user', $user);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -78,8 +79,13 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
-    {
-        //
+    protected function deleteAddress($id){
+        $address = Address::find($id);
+
+        $user = User::where('id', $address->user->id)->get();
+       
+
+        $address->delete();
+        return redirect('/profile/addresses/'.$user[0]->id)->with('user', $user);
     }
 }

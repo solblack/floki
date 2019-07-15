@@ -68,6 +68,24 @@ class DatabaseSeeder extends Seeder
           'is_main' => 1
         ]);
 
+        DB::table('categories')->insert([
+          'name' => 'Scandinavian',
+          'url' => 'scandinavian',
+          'is_main' => 0
+        ]);
+
+        DB::table('categories')->insert([
+          'name' => 'Boho',
+          'url' => 'boho',
+          'is_main' => 0
+        ]);
+
+        DB::table('categories')->insert([
+          'name' => 'Shabby chic',
+          'url' => 'shabby',
+          'is_main' => 0
+        ]);
+
 
         DB::table('order_statuses')->insert([
           'status' => 'ESPERANDO PAGO'
@@ -95,6 +113,14 @@ class DatabaseSeeder extends Seeder
           [
           'product_id' => $product['id'],
           'category_id' => rand(1, 6)
+          ]);
+        }
+
+        foreach ($products as $product) {
+          DB::table('product_category')->insert(
+          [
+          'product_id' => $product['id'],
+          'category_id' => rand(7, 9)
           ]);
         }
 

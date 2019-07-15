@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cart extends Model
 {
-    p protected $guarded = [];
+    protected $guarded = [];
     use SoftDeletes;
 
     public function user(){

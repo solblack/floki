@@ -1,5 +1,4 @@
 window.addEventListener("load", function() {
-
     // cambiar cantidad de productos
     var rows = document.getElementsByClassName("productorder");
 
@@ -12,13 +11,14 @@ window.addEventListener("load", function() {
             if (cantidadProductoNueva <= 0 || isNaN(cantidadProductoNueva)) {
                 cantidadProductoNueva = 1;
             }
-            var precio = event.path[1].nextElementSibling.innerText;
+
+            var precio = event.path[1].nextElementSibling.innerText.substr(1);
             var cantidadProducto = event.target.defaultValue;
             var precioNuevo =
                 (precio / cantidadProducto) * cantidadProductoNueva;
 
             event.target.value = cantidadProductoNueva;
-            event.path[1].nextElementSibling.innerText = precioNuevo;
+            event.path[1].nextElementSibling.innerText = "$"+precioNuevo;
             event.target.defaultValue = cantidadProductoNueva;
 
             var total =
@@ -26,28 +26,41 @@ window.addEventListener("load", function() {
 
             document.querySelector(".checkouttotal").innerHTML = total;
 
-            var productId = event.path[2].children[0].value;
+            var productId = event.path[2].children[1].value;
+            var userId = document.querySelector(".currentuser").value;
 
-            // console.log( productId, cantidadProducto, cantidadProductoNueva);
-
-            var product = {
-                id: productId,
-                cantidad: cantidadProductoNueva
+            if (!userId) {
+                var product = {
+                    id: productId,
+                    cantidad: cantidadProductoNueva
+                };
+            } else {
+                var product = {
+                    id: productId,
+                    cantidad: cantidadProductoNueva,
+                    user_id: userId
+                };
             }
 
-            if(cantidadProducto != cantidadProductoNueva){
+            console.log(
+                event,
+                productId,
+                cantidadProductoNueva,
+                userId,
+                product
+            );
 
-                $.ajax({
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    type: "POST",
-                    url: '/updatecart',
-                    data: product,
-                    complete: function(){
-                        console.log('todo ok');
-                    }
-                })
-            }
-
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                type: "POST",
+                url: "/updatecart",
+                data: product,
+                complete: function() {
+                    console.log("todo ok");
+                }
+            });
         });
     }
 
@@ -55,44 +68,52 @@ window.addEventListener("load", function() {
 
     var deletebuttons = document.getElementsByClassName("btn-delete-out");
 
-    for(var i = 0; i<deletebuttons.length; i++){
+    for (var i = 0; i < deletebuttons.length; i++) {
         button = deletebuttons[i];
-        button.addEventListener('click', function(event){
+        button.addEventListener("click", function(event) {
             console.log(event);
-        var buttonClicked = event.target;
-        var button_parent = buttonClicked.parentElement.parentElement.parentElement;
-        var productId = button_parent.getElementsByClassName("input-product-id")[0].value;
-        var precio = button_parent.getElementsByClassName('precioporproducto')[0].innerHTML;
-        buttonClicked.parentElement.parentElement.parentElement.remove();
-        var total = document.querySelector(".checkouttotal").innerHTML;
-        var totalActualizado = parseInt(total) - parseInt(precio);
+            var buttonClicked = event.target;
+            var button_parent =
+                buttonClicked.parentElement.parentElement.parentElement;
+            var productId = button_parent.getElementsByClassName(
+                "input-product-id"
+            )[0].value;
+            var userId = document.querySelector(".currentuser").value;
+            var precio = button_parent.getElementsByClassName(
+                "precioporproducto"
+            )[0].innerHTML.substr(1);
+            buttonClicked.parentElement.parentElement.parentElement.remove();
+            var total = document.querySelector(".checkouttotal").innerHTML;
+            var totalActualizado = parseInt(total) - parseInt(precio);
 
-        document.querySelector('.checkouttotal').innerHTML = totalActualizado;
+            document.querySelector(
+                ".checkouttotal"
+            ).innerHTML = totalActualizado;
 
-        if(totalActualizado===0){
+            if (totalActualizado === 0) {
 
-            document.querySelector('.divcheckout').innerHTML = "No tiene productos en su carrito";
-            document.querySelector('.buttonssubmit').innerHTML = "";
-        }
-
-        var cantidad = 0;
-
-        var product = {
-            id: productId,
-            cantidad: cantidad
-        }
-
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            type: "POST",
-            url: '/deletefromcart',
-            data: product,
-            complete: function(){
-                console.log('todo ok');
+                document.querySelector("table").style.display = "none";
+                document.querySelector(".divcheckout").style.display = "none";
+                document.querySelector(".buttonssubmit").innerHTML = "";
+                document.querySelector(".none-display").style.display = "block";
             }
-        })
 
-        })
+            var product = {
+                id: productId,
+                user_id: userId
+            };
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                type: "POST",
+                url: "/deletefromcart",
+                data: product,
+                complete: function() {
+                    console.log("todo ok");
+                }
+            });
+        });
     }
-
 });

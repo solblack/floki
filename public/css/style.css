@@ -1852,10 +1852,6 @@ border: none;
     font-weight: 100;
 }
 
-
-
-/* CHECKOUT */
-
 .btn-delete {
     border: none;
     color: #0d4659;
@@ -1871,12 +1867,21 @@ border: none;
     outline: none;
 }
 
-.btn-delete-out{
+.thead-light td .btn-delete-out{
 background-color: rgba(255, 0, 0, 0);
 border: none;
-outline: none;
+outline: none !important;
 color: #0d4659;
 font-size: 16px;
 font-family: "Work Sans", sans-serif;
 /* padding: 8px 8px 0; */
 }
+
+/* checkout */
+
+.container .order-list, .container .order-form{
+    text-transform: uppercase;
+    
+
+}
+

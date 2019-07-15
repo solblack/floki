@@ -2,47 +2,59 @@
 
 @section('title', '¡Contactános! - FLOKI Deco & Design')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/forms.css') }}"/>
+@endsection
+
 
 @section('content')
 
-  <section class="section-contacto">
-      <div class="register">
-          <!--Imagen-->
-          <article class="art1 d-none d-lg-block">
-              <img src="images/living2.jpg" alt="living2" width="100%" height="859px" />
-          </article>
-          <!--Form-->
-          <article class="art2">
-              <form class="formulario" action="/contacto" method="post">
+  <section class="form-container">
+    <div class="div-inside-container">
+
+      <div class="form-box" data-aos="zoom-in" data-aos-duration="1000">
+
+        <h1 class="form-title">
+            ¡Contactános!
+        </h1>
+
+        <div class="validacion-redes">
+            <a href="https://instagram.com" target="_blank" class="redes-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="redes-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="redes-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <div class="o-wrap">
+            <div class="hr">
+              <hr>
+              <hr>
+            </div>
+            <i class="far fa-circle"></i>
+        </div>
+
+        <form class="formulario" action="/contacto" method="post">
                 @csrf
 
-                @if (Session::has('flash_message'))
-                  <p class="contactanos">
-                    {{ Session::get('flash_message') }}
-                  </p>
-                  @else
-                    <p class="contactanos">
-                        ¡Contactanos!
-                    </p>
-                @endif
 
-                  <p>
-                    <input id="name" type="text" class="userform" name="name" value="{{ old('name') }}"
+                    <input id="name" type="text"name="name" value="{{ old('name') }}"
                         autocomplete="name" autofocus @error('name') @if (isset($message)) placeholder="{{ $message }}"
                         @enderror @else placeholder="Nombre" @endif>
-                  </p>
-                  <p>
-                    <input id="last_name" type="text" class="userform" name="last_name" value="{{ old('last_name') }}"
+
+                    <input id="last_name" type="text"  name="last_name" value="{{ old('last_name') }}"
                         autocomplete="last_name" autofocus @error('last_name') @if (isset($message))
                         placeholder="{{ $message }}" @enderror @else placeholder="Apellido" @endif>
-                  <p>
-                    <input id="email" type="text" class="userform" name="email" value="{{ old('email') }}"
+
+                    <input id="email" type="text" name="email" value="{{ old('email') }}"
                         autocomplete="email" autofocus @error('email') @if (isset($message))
                         placeholder="{{ $message }}" @enderror @else placeholder="Email" @endif>
-                  </p>
-                  <p>
+
                     <textarea id="mensaje"  class="mensaje-contacto" name="mensaje" value="{{ old('mensaje') }}"
-                        rows="8" cols="60"
+                        rows="8"
                          @error('mensaje')
                            @if (isset($message))
                              placeholder="{{ $message }}"
@@ -50,13 +62,10 @@
                           @else
                             placeholder="Escriba su mensaje aquí..."
                           @endif></textarea>
-                  </p>
 
-                  <p>
-                      <button id="send-button" type="submit" >
+                      <button class="send-button" id="send-button" type="submit" >
                           <i class="far fa-paper-plane"></i> Enviar
                       </button>
-                  </p>
 
                   <div class="contacto-mensaje-enviado">
                     @if (isset($mensajeEnviado))
@@ -69,9 +78,8 @@
 
               </form>
 
+            </div>
+        </div>
 
-          </article>
-      </div>
-  </section>
-  <br>
+    </section>
 @endsection

@@ -12,14 +12,24 @@ use App\Http\Middleware\Admin;
 |
 */
 
+// Route::get('/install', function() {
+//   Artisan::call('storage:link');
+//   Artisan::call('migrate:refresh');
+//   Artisan::call('db:seed');
+// });
+
 Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/inspiration', function () {
+Route::get('/inspiracion', function () {
     return view('inspiration');
+});
+
+Route::get('/faq', function () {
+    return view('faq');
 });
 
 Route::get('/nosotros', function () {
@@ -30,11 +40,20 @@ Route::get('/shop', 'ProductController@index');
 
 Route::get('/search', 'ProductController@search');
 
-Route::get('/profile', 'UserController@show')->middleware('auth');
+Route::group(['middleware' => 'auth'], function(){
 
-Route::post('/profile', 'UserController@update')->middleware('auth');
+Route::get('/profile', 'UserController@show');
 
-Route::group(['middleware' => 'admin'], function () {
+Route::post('/profile', 'UserController@update');
+
+Route::get('/profile/orders/{id}', 'OrderController@showOrders');
+
+Route::get('/profile/addresses/{id}', 'AddressController@showAddresses');
+
+Route::get('/profile/deleteaddress/{id}', 'AddressController@deleteAddress');
+});
+
+Route::group(['middleware' => 'admin'], function (){
 
     Route::post('/admin/addproducts', 'ProductController@create');
 
@@ -73,23 +92,26 @@ Route::get('/shop/{category}', 'ProductController@categories');
 
 Route::get('/product/{id}', 'ProductController@show');
 
-Route::get('/shop/order/{parametro}', 'ProductController@orderByPrice');
+Route::get('/shop?order={parametro}', 'ProductController@orderByPrice');
+Route::get('/shop/{categoria}?order={parametro}', 'ProductController@orderCategoryByPrice');
 
 Route::get('/contacto', 'ContactoController@index');
 
 Route::post('/contacto', 'ContactoController@enviarMensaje');
 
-Route::post('/addtocart', 'ProductController@addToCart');
-
-Route::post('/editcart', 'ProductController@editCart');
-
-Route::post('/borrarCartItem', 'ProductController@editCart');
+Route::post('/addtocart', 'CartController@addToCart');
 
 // update & delete from ajax
-Route::post('/updatecart', 'ProductController@updateCart');
+Route::post('/updatecart', 'CartController@updateCart');
 
-Route::post('/deletefromcart', 'ProductController@deleteFromCart');
+Route::post('/deletefromcart', 'CartController@deleteFromCart');
 
-Route::get('/cart', 'ProductController@cart');
+Route::get('/cart', 'CartController@show')->name('cart');
 
-Route::get('/checkout', 'ProductController@');
+Route::get('/checkoutguest', 'CartController@checkoutSession')->name('checkoutGuest');
+
+Route::get('/checkoutuser', 'CartController@checkoutUser')->middleware('auth')->name('checkoutUser');
+
+Route::post('/order', 'OrderController@create');
+
+Route::get('/order', 'OrderController@showTest');

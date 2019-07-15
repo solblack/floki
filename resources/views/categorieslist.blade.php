@@ -2,7 +2,31 @@
 
 @section('title', 'Admin - FLOKI Deco & Design')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+
+
+@endsection
+
 @section('content')
+
+  <ul class="menu-admin-horizontal">
+      <li>
+          <a class="listperfil" href="/admin/productslist">productos</a>
+      </li>
+      <li>
+          <a class="listperfil" href="/admin/categorieslist">categorias</a>
+      </li>
+      <li>
+          <a class="listperfil" href="/admin/orderslist">ordenes</a>
+      </li>
+      <li>
+          <a class="listperfil" href="/admin/userslist">usuarios</a>
+      </li>
+      <li>
+          <a class="listperfil" href="/profile">agregar producto</a>
+      </li>
+  </ul>
 
 <h1 class="titleperfil">Listado Categorias</h1>
 
@@ -18,13 +42,14 @@
     </thead>
     <tbody class="thead-light">
         @foreach ($categories as $category)
+
         <tr class="category-row">
             <th scope="row">{{$category->id}}</th>
             <td>{{$category->name}} </td>
             <td>{{$category->url}}</td>
             <td><a href="/admin/editcategory/{{$category->id}}"><button class="button" name="button">Editar</button></a>
             </td>
-            @if ($category->products==[])
+            @if (count($category->products)>0)
             <td><button name="button" class="button delete btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Eliminar</button>
             </td>
                 <div id="myModal" class="modal fade" role="dialog">
@@ -64,7 +89,3 @@
 </table>
 
 @endsection
-
-
-
-

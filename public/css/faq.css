@@ -1,0 +1,41 @@
+/* Colores: Turquesa #98DAE0 #CFE3E3
+            Azul oscuro #0D4659*/
+
+
+/* F.A.Q.*/
+
+
+
+ .faq-text h2{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 2.5em;
+  font-weight: lighter;
+  color: #CFE3E3;
+  text-align: left;
+  margin: 30px 0 0;
+  width: 93%;
+
+  text-transform: uppercase;
+}
+
+.faq-text{
+  width: 80%;
+  margin: 0 auto 50px;
+}
+
+.faq-text p, .style-text a{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #383838;
+  text-align: justify;
+  margin: 10px auto;
+
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -20vh;
+    visibility: hidden;
+}

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Category;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,5 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         View::share('categories', $categories);
     }
-    
+
 }

@@ -3,3 +3,142 @@
 
 
 /* NOSOTROS*/
+
+.nosotros-parallax {
+  /* The image used */
+  background-image: url("../images/parallax/oficina3.jpg");
+
+  /* Full height */
+  /* height: 2000px; */
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 5000px;
+
+
+}
+
+.div-inside-nosotros-parallax{
+  padding-top: 10vh;
+  width: 80%;
+  margin: auto;
+
+}
+
+.box-nosotros {
+  width: 80%;
+  /* height: 30em; */
+  background-color: rgba(248, 248, 248, 0.9);
+  margin: 20px auto 70px;
+  padding: 20px 40px;
+}
+
+.nosotros-title{
+  border-color:  rgba(207, 227, 227, 0.9);
+  border-width: 5px;
+  border-style: solid;
+  margin: 5px auto;
+  padding: 10px;
+  width: 80%;
+}
+
+.nosotros-title h1{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 4em;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 10px auto;
+  width: 93%;
+
+  padding: 10px;
+  background-color: rgba(207, 227, 227, 0.9);
+
+}
+
+.nosotros-parallax p, .nosotros-parallax a{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #383838;
+  text-align: justify;
+  margin: 10px auto;
+
+}
+
+.nosotros-parallax a{
+font-weight: bold;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 30px 30px 70px;
+}
+
+.team-member img {
+  width: 60%;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.team-member h2{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.7em;
+  font-weight: lighter;
+  color: #383838;
+  background-color: rgba(207, 227, 227, 0.9);
+  text-align: left;
+  margin: 10px auto;
+  width: 100%;
+  padding: 10px 5px;
+  text-align: center;
+}
+
+.team-member h3{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: #383838;
+  text-align: left;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px 5px 5px;
+  text-align: center;
+}
+
+.team-member p, .team-member a{
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #383838;
+  text-align: left;
+  margin: 0 auto;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+
+.team-member a:hover{
+  font-weight: bold;
+}
+
+.team-member-datos{
+  background-color: rgba(252, 252, 252, 0.9);
+}

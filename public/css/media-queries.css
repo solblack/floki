@@ -522,11 +522,17 @@
 
   .form-box form input {
     width: 70%;
+    font-size: 11px;
   }
 
   .form-box form input::placeholder{
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: 11px;
+  }
+
+  .error-message{
+    font-size: 0.7em;
+    width: 90%;
   }
 
   .mensaje-contacto {

@@ -59,11 +59,11 @@ class RegisterController extends Controller
     ];
 
     $messages = [
-      'required' => 'El campo es obligatorio',
-      'string' => 'El campo debe contener solo letras',
+      'required' => 'El campo :attribute es obligatorio',
+      'string' => 'El campo :attribute debe contener solo letras',
       'unique:users' => 'El email ya se encuentra registrado',
-      'email' => "Ingrese un email válido",
-      'min' => ['string' => 'Ingrese al menos :min caracteres'],
+      'email' => "Por favor, ingrese un email con el formato usuario@mail.com",
+      'min' => ['string' => 'La contraseña debe contener al menos :min caracteres'],
       'accepted' => 'Por favor acepte los :attribute',
       'confirmed' => 'Las contraseñas no coinciden'
     ];

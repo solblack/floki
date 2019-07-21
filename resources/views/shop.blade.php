@@ -102,6 +102,14 @@
 
     </div>
 
+  @if ($products->count() == 0)
+      <div class="contenedor-productos">
+        <h2 class="search-fail">No se encontraron productos con la búsqueda "{{ $_GET['search'] }}".</h2>
+      </div>
+
+  @else
+
+
     <div class="contenedor-productos">
         <section class="section-productos">
             @foreach ($products as $product)
@@ -150,11 +158,12 @@
           <div class="pagination-productos">
               {{$products->appends($_GET)->links()}}
           </div>
+@endif
 
     </div>
 
-
-
-</div>
+  </div>
 </section>
+
+
 @endsection

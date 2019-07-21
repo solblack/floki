@@ -19,10 +19,12 @@
         <div class="fotos-producto">
              <div class="photo-product-main" >
                <i id="previousPhoto" class="fas fa-chevron-left"></i>
+               <div class="div-img-producto">
                @foreach ($product->productPhotos as $productPhoto)
                  <img  class="productPhotos" src="/uploads/product_photos/{{$productPhoto->filename}}"
                              alt="">
                @endforeach
+             </div>
 
               <i id="nextPhoto" class="fas fa-chevron-right"></i>
              </div>

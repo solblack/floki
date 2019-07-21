@@ -3,10 +3,22 @@ var photos = document.querySelectorAll('img.productPhotos');
 var btnPrevious = document.getElementById('previousPhoto');
 var btnNext = document.getElementById('nextPhoto');
 var contador = 0;
+var divFoto = document.querySelector(".div-img-producto");
+
 
 for (var i = 1; i < photos.length; i++) {
   photos[i].style.display = "none";
 }
+
+divFoto.addEventListener('click', function(){
+  photos[contador].style.display = "none";
+  if (contador < (photos.length - 1)) {
+    contador++;
+  } else {
+    contador = 0;
+  }
+  photos[contador].style.display = "inline";
+});
 
 
 

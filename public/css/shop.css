@@ -177,9 +177,9 @@ a.page-link, .page-link {
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 80%;
+  height: 50px;
   margin: 0 auto;
 }
-
 
 .btn-tag {
   background-color: #efefef;
@@ -190,8 +190,20 @@ a.page-link, .page-link {
   border-radius: 10px;
   margin: 0 3px 3px;
   padding: 2px 7px;
+  height: 17px;
 }
 
 .btn-tag:hover, .btn-tag, .tags-categorias:hover {
   cursor: default;
+}
+
+.search-fail{
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.5em;
+  color: #0d4659;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px 0 0 0;
+  margin: 0;
+  font-weight: lighter;
 }

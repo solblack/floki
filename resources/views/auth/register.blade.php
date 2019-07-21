@@ -43,30 +43,52 @@
 
 
                     <input id="name" type="text" name="name" value="{{ old('name') }}"
-                        autocomplete="name" autofocus @error('name') @if (isset($message)) placeholder="{{ $message }}"
-                        @enderror @else placeholder="Nombre" @endif>
+                        autocomplete="name" autofocus placeholder="Nombre">
+
+                    <div class="opciones">
+                      @error('name')
+                          <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+                      @enderror
+                    </div>
 
 
                     <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}"
-                        autocomplete="last_name" autofocus @error('last_name') @if (isset($message))
-                        placeholder="{{ $message }}" @enderror @else placeholder="Apellido" @endif>
+                        autocomplete="last_name" autofocus placeholder="Apellido">
+
+                    <div class="opciones">
+                      @error('last_name')
+                          <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+                      @enderror
+                    </div>
 
 
-                    <input id="email" type="text"  name="email" value=""
-                        autocomplete="email" autofocus @error('email') @if (isset($message))
-                        placeholder="{{ $message }}" @enderror @else placeholder="Email" @endif>
+                    <input id="email" type="text"  name="email" value="{{ old('email') }}"
+                        autocomplete="email" autofocus placeholder="Email">
 
+                    <div class="opciones">
+                      @error('email')
+                          <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+                      @enderror
+                    </div>
 
                     <input id="password" type="password"  name="password" data-toggle="tooltip"
                         data-placement="top" title="La contraseña debe tener al menos 8 caracteres"
-                        autocomplete="new-password" @error('password') @if (isset($message))
-                        placeholder="{{ $message }}" @enderror @else placeholder="Contraseña" @endif>
+                        autocomplete="new-password" placeholder="Contraseña">
 
+                    <div class="opciones">
+                      @error('password')
+                          <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+                      @enderror
+                    </div>
 
                     <input id="password-confirm" type="password"  name="password-confirmation"
-                        autocomplete="new-password" @error('password-confirmation') @if (isset($message))
-                        placeholder="{{ $message }}" @enderror @else placeholder="Repita su contraseña" @endif>
+                        autocomplete="new-password" placeholder="Repita su contraseña">
 
+                    <div class="opciones">
+                      @error('password-confirmation')
+                          <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+                      @enderror
+                    </div>
 
                     <input type="hidden" name="newsletter" value=0>
                     <div class="opciones2">
@@ -77,8 +99,9 @@
                     <div class="opciones2" >
                         <input class="checkbox" id="tyc" type="checkbox" name="tyc">
                         <span class="checkbox-text">Estoy de acuerdo con los <a href="/faq#privacidad">términos y condiciones.</a></span>
+
                         <div class="opciones">@error('tyc')
-                        <p class="condiciones">{{ $message }}</p>
+                        <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
                         @enderror</div>
                     </div>
 

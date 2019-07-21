@@ -235,7 +235,7 @@ window.addEventListener("load", function() {
               validateCountry();
 
 
-            if(nameChecked, last_nameChecked, emailChecked, address1Checked, cityChecked, zipcodeChecked, stateChecked, countryChecked){
+            if(nameChecked && last_nameChecked && emailChecked && address1Checked && cityChecked && zipcodeChecked && stateChecked && countryChecked){
 
 
                 this.submit();

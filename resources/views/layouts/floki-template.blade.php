@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="image_src" href="{{ asset('images/Fscreenshot1.jpg') }}" />
 
     <title>@yield('title')</title>
     <meta charset="utf-8" />

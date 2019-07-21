@@ -149,14 +149,14 @@
     font-weight: bold;
 }
 
-.condiciones {
+.error-message {
     color: #0d4659;
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 2px 3px;
     margin: 0 auto;
     text-align: center;
-    font-size: 10px;
-    width: 70%;
+    font-size: 0.9em;
+    width: 100%;
 }
 
 .send-button {
